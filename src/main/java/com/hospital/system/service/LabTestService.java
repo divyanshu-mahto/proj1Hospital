@@ -18,6 +18,7 @@ public class LabTestService {
         labTest.setTestType(testType);
         labTest.setPatientId(patientId);
         labTest.setTestDate(LocalDateTime.now().plusDays(1));
+
         return labTestRepository.save(labTest);
     }
 }
