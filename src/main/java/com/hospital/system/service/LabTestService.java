@@ -5,21 +5,19 @@ import com.hospital.system.repository.LabTestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class LabTestService {
 
     private final LabTestRepository labTestRepository;
-    private final EmailService emailService;
 
-    public LabTest scheduleLabTest(LabTest labTest) {
-        LabTest saved = labTestRepository.save(labTest);
-        emailService.sendEmail(
-                saved.getEmail(),
-                "Lab Test Confirmation",
-                "Dear " + saved.getPatientName() + ", your " + saved.getTestType()
-                        + " test is scheduled for " + saved.getTestDate() + "."
-        );
-        return saved;
+    public LabTest scheduleLabTest(String testType, String patientId) {
+        LabTest labTest = new LabTest();
+        labTest.setTestType(testType);
+        labTest.setPatientId(patientId);
+        labTest.setTestDate(LocalDateTime.now().plusDays(1));
+        return labTestRepository.save(labTest);
     }
 }

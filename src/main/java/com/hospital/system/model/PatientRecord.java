@@ -13,7 +13,8 @@ public class PatientRecord {
 
     @Id
     private String id;
-
+    private String patientName;
+    private String patientMail;
     private String patientId;
     private Map<String, Object> demographics;
     private Map<String, Object> labResults;

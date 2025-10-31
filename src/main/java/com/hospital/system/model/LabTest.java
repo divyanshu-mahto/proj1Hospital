@@ -12,8 +12,7 @@ import java.time.LocalDateTime;
 public class LabTest {
     @Id
     private String id;
-    private String patientName;
     private String testType;
-    private String email;
+    private String patientId;
     private LocalDateTime testDate;
 }
